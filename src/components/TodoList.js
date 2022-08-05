@@ -12,10 +12,14 @@ function TodoList() {
         setTodos(todos.map((todo) => todo.id === id ? newContentTodo : todo))
     }
 
+    const deleteTodo = (id) => {
+        setTodos(todos.filter((todo) => todo.id !== id));
+    }
+
     return (   
         <div>
             <TodoForm onSubmit={addTodo}/>
-            <Todo todos={todos} updateTodo={updateTodo}/>
+            <Todo todos={todos} updateTodo={updateTodo} deleteTodo={deleteTodo}/>
         </div>
     )
 }

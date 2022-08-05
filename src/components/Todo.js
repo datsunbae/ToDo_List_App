@@ -51,7 +51,7 @@ function Todo(props) {
             <li key={index}>
                 {todo.contentTodo}
                 <GrEdit onClick={() => setEdit({id: todo.id, value: todo.contentTodo})}/> 
-                <IoClose />
+                <IoClose onClick={() => props.deleteTodo(todo.id)}/>
             </li>)}
         </ul>
   )
