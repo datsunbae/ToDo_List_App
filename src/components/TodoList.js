@@ -4,16 +4,18 @@ import TodoForm from './TodoForm'
 
 function TodoList() {
     const [todos, setTodos] = useState([])
-    
     const addTodo = (todo) => {
         setTodos([todo, ...todos])
-        console.log(todos)
     }
 
-    return (  
+    const updateTodo = (id, newContentTodo) => {
+        setTodos(todos.map((todo) => todo.id === id ? newContentTodo : todo))
+    }
+
+    return (   
         <div>
-            <TodoForm addTodo={addTodo}/>
-            <Todo todos={todos}/>
+            <TodoForm onSubmit={addTodo}/>
+            <Todo todos={todos} updateTodo={updateTodo}/>
         </div>
     )
 }

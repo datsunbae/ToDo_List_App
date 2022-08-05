@@ -6,17 +6,21 @@ function TodoForm(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    props.addTodo({
-        id: Math.floor(Math.random() * 100000),
+    
+    props.onSubmit({
+        id: props.edit ? props.edit.id : Math.floor(Math.random() * 100000),
         contentTodo: input
     });
+
+    setInput('')
   }
     
   return (
     <form onSubmit={handleSubmit}>
         <input 
+            name="23123"
             type="text" 
-            placeholder="Add a todo" 
+            placeholder={props.edit ? "Update" : "Add"} 
             value={input} 
             onChange={(e) => {
                 setInput(e.target.value)
