@@ -1,5 +1,5 @@
-import {useEffect, useState} from 'react'
-import {GrEdit} from 'react-icons/gr';
+import {useState} from 'react'
+import {VscEdit} from 'react-icons/vsc';
 import {IoClose} from "react-icons/io5";
 import TodoForm from './TodoForm';
 
@@ -19,39 +19,36 @@ function Todo(props) {
         });
     }
 
-    useEffect(() => {
-        
-    })
-
-    if(edit.id) 
-    {
-        return (
-           <div style={
-            {
-                zIndex: 1, 
-                position: 'fixed', 
-                top : 0, left: 0, 
-                right: 0, 
-                bottom: 0,
-                backgroundColor: 'rgba(0, 0, 0, 0.3)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-            }}>
-             <TodoForm edit={edit} onSubmit={handleSubmitUpdate}/>
-           </div>
-        )
+    const handleCloseModalUpdate = () => {
+        setEdit({
+            id: null,
+            contentTodo: ''
+        });
     }
-  
+
     return (
-        <ul>
-            {props.todos.map((todo, index) => 
-            <li key={index}>
-                {todo.contentTodo}
-                <GrEdit onClick={() => setEdit({id: todo.id, value: todo.contentTodo})}/> 
-                <IoClose onClick={() => props.deleteTodo(todo.id)}/>
-            </li>)}
-        </ul>
+        <div>
+            <ul className="todo-list">
+                {props.todos.map((todo, index) => 
+                <li key={index} className="todo-row">
+                    {todo.contentTodo}
+                    <div className="todo-wrapper-icons">
+                        <VscEdit size={21} style={{fontWeight: 800, marginRight: '10px', cursor: 'pointer'}} onClick={() => setEdit({id: todo.id, value: todo.contentTodo})}/> 
+                        <IoClose size={21} style={{fontWeight: 800, cursor: 'pointer'}} onClick={() => props.deleteTodo(todo.id)}/>
+                    </div>
+                </li>)}
+            </ul>
+            <div>
+                {edit.id ? (
+                    <div className="container-modal-update">
+                        <div className="todo-modal-update">
+                            <h2 className="todo-modal-update_title">Update todo</h2>
+                            <IoClose className="icon-close-modal-update" onClick={handleCloseModalUpdate}/>
+                            <TodoForm edit={edit} onSubmit={handleSubmitUpdate}/>
+                        </div>
+                    </div>) : ''}
+            </div>
+        </div>
   )
 }
 
