@@ -3,7 +3,9 @@ import Todo from './Todo'
 import TodoForm from './TodoForm'
 
 function TodoList() {
-    const [todos, setTodos] = useState([])
+    const localStorageTodos = JSON.parse(localStorage.getItem('todos'));
+    const [todos, setTodos] = useState(localStorageTodos ?? [])
+    
     const addTodo = (todo) => {
         setTodos([todo, ...todos])
     }
@@ -15,6 +17,13 @@ function TodoList() {
     const deleteTodo = (id) => {
         setTodos(todos.filter((todo) => todo.id !== id));
     }
+
+    const saveLocalStorage = () => {
+        const jsonTodos = JSON.stringify(todos);
+        localStorage.setItem('todos', jsonTodos)
+    }
+
+    saveLocalStorage();
 
     return (   
         <div>

@@ -2,7 +2,7 @@ import {useState} from 'react'
 
 function TodoForm(props) {
 
-  const [input, setInput] = useState('');
+  const [input, setInput] = useState(props.edit ? props.edit.value : '');
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -17,15 +17,15 @@ function TodoForm(props) {
     
   return (
     <form onSubmit={handleSubmit}>
-        <input 
-            name="23123"
+        <input
+            name="todo" 
             type="text" 
-            placeholder={props.edit ? "Update" : "Add"} 
+            placeholder={props.edit ? "Update todo" : "Add todo"} 
             value={input} 
             onChange={(e) => {
                 setInput(e.target.value)
             }}/>
-        <button>Add</button>
+        <button>{props.edit ? "Update" : "Add"}</button>
     </form>
   )
 }

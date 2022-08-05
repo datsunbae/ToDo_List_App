@@ -12,8 +12,6 @@ function Todo(props) {
 
 
     const handleSubmitUpdate = (value) => {
-        console.log(value.id)
-        console.log(edit.id)
         props.updateTodo(edit.id, value);
         setEdit({
             id: null,
