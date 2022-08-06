@@ -9,7 +9,8 @@ function TodoForm(props) {
     
     props.onSubmit({
         id: props.edit ? props.edit.id : Math.floor(Math.random() * 100000),
-        contentTodo: input
+        contentTodo: input,
+        isComplete: false
     });
 
     setInput('')

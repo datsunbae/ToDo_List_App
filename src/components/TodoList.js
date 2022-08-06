@@ -18,6 +18,15 @@ function TodoList() {
         setTodos(todos.filter((todo) => todo.id !== id));
     }
 
+    const completeTodo = (id) => {
+        setTodos(todos.map((todo) => {
+            if(todo.id === id){
+                todo.isComplete = true
+            }
+            return todo;
+        }))
+    }
+
     const saveLocalStorage = () => {
         const jsonTodos = JSON.stringify(todos);
         localStorage.setItem('todos', jsonTodos)
@@ -28,7 +37,7 @@ function TodoList() {
     return (   
         <div>
             <TodoForm onSubmit={addTodo}/>
-            <Todo todos={todos} updateTodo={updateTodo} deleteTodo={deleteTodo}/>
+            <Todo todos={todos} updateTodo={updateTodo} deleteTodo={deleteTodo} completeTodo={completeTodo}/>
         </div>
     )
 }

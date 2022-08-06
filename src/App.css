@@ -168,4 +168,18 @@
     font-weight: 700;
     cursor: pointer;
   }
+
+  .todo-icons {
+    font-weight: 700;
+    font-size: 20px;
+    cursor: pointer;
+    margin-right: 12px;
+  }
+
+  .todo-complete {
+    text-decoration: line-through black 2px;
+  }
   
+  .todo-complete .todo-isComplete {
+    display: none;
+  }
