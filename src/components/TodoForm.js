@@ -27,7 +27,7 @@ function TodoForm(props) {
             onChange={(e) => {
                 setInput(e.target.value)
             }}/>
-        <button className="btn btn-add">{props.edit ? "Update" : "Add"}</button>
+        <button className="btn btn-blue">{props.edit ? "Update" : "Add"}</button>
     </form>
   )
 }

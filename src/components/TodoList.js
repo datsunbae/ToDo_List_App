@@ -1,10 +1,15 @@
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 import Todo from './Todo'
 import TodoForm from './TodoForm'
 
 function TodoList() {
     const localStorageTodos = JSON.parse(localStorage.getItem('todos'));
     const [todos, setTodos] = useState(localStorageTodos ?? [])
+    const [todosfilter, setTodosfilter] = useState(todos)
+
+    useEffect(() => {
+        setTodosfilter(todos)
+    }, [todos])
     
     const addTodo = (todo) => {
         setTodos([todo, ...todos])
@@ -27,6 +32,18 @@ function TodoList() {
         }))
     }
 
+    const filterTodoActivity = () => {
+        setTodosfilter(todos.filter(todo => todo.isComplete === false))
+    }
+
+    const filterTodoComplete = () => {
+        setTodosfilter(todos.filter(todo => todo.isComplete))
+    }
+
+    const filterTodoAll = () => {
+        setTodosfilter(todos)
+    }
+
     const saveLocalStorage = () => {
         const jsonTodos = JSON.stringify(todos);
         localStorage.setItem('todos', jsonTodos)
@@ -37,7 +54,16 @@ function TodoList() {
     return (   
         <div>
             <TodoForm onSubmit={addTodo}/>
-            <Todo todos={todos} updateTodo={updateTodo} deleteTodo={deleteTodo} completeTodo={completeTodo}/>
+            <Todo 
+                todos={todos}
+                todosfilter={todosfilter}
+                updateTodo={updateTodo}
+                deleteTodo={deleteTodo} 
+                completeTodo={completeTodo}
+                filterTodoActivity={filterTodoActivity}
+                filterTodoComplete={filterTodoComplete}
+                filterTodoAll={filterTodoAll}
+            />
         </div>
     )
 }

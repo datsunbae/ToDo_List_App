@@ -50,6 +50,7 @@
     height: 40px;
     border-radius: 12px;
     border: 2px solid #6944ff;
+    width: 60%;
   }
 
   .btn {
@@ -61,10 +62,21 @@
     margin: 0 10px;
     border: none;
     cursor: pointer;
+    height: 43px;
   }
 
-  .btn-add {
+  .btn-blue {
     background: linear-gradient(45deg, #1da1f2, #0e71c8);
+    box-shadow: 0px 4px 30px rgb(19 127 212 / 40%);
+  }
+
+  .btn-red {
+    background: linear-gradient(45deg, #d5135a, #f05924);
+    box-shadow: 0px 4px 30px rgb(223 45 70 / 35%);
+  }
+
+  .btn-green {
+    background: linear-gradient(45deg, #0ba130, #0a6e15);
     box-shadow: 0px 4px 30px rgb(19 127 212 / 40%);
   }
 
@@ -182,4 +194,9 @@
   
   .todo-complete .todo-isComplete {
     display: none;
+  }
+
+  .wraper-btns-classify {
+    margin: 16px 0;
+    text-align: center;
   }

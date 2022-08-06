@@ -11,7 +11,6 @@ function Todo(props) {
         value: ''
     })
 
-
     const handleSubmitUpdate = (value) => {
         props.updateTodo(edit.id, value);
         setEdit({
@@ -33,8 +32,13 @@ function Todo(props) {
 
     return (
         <div>
+            <div className="wraper-btns-classify">
+                <button className="btn btn-blue" onClick={props.filterTodoActivity}>Activity</button>
+                <button className="btn btn-green" onClick={props.filterTodoComplete}>Completed</button>
+                <button className="btn btn-red" onClick={props.filterTodoAll}>All</button>
+            </div>
             <ul className="todo-list">
-                {props.todos.map((todo, index) => 
+                {props.todosfilter.map((todo, index) => 
                     (<li key={index} className={todo.isComplete ? "todo-complete todo-row" : "todo-row"}>
                         {todo.contentTodo}
                         <div className="todo-wrapper-icons">
